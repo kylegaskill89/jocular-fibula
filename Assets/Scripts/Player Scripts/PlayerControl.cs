@@ -10,9 +10,9 @@ public class PlayerControl : MonoBehaviour {
 	float shipBoundary = .42f;
 	
 	
-	float cooldownTime = 0f;
+	public float cooldownTime = 10f;
 	
-	float cooldownTimeTwo = 0f; 
+	public float cooldownTimeTwo = 10f; 
 	
 	
 	// Use this for initialization
@@ -70,7 +70,7 @@ public class PlayerControl : MonoBehaviour {
 		
 		cooldownTime += Time.deltaTime;
 		cooldownTimeTwo += Time.deltaTime;
-		
+
 		
 		// If the time since the last shot is higher than the attack speed and the player is pressing the button to shoot, then the timer is reset and the shot is fired
 		

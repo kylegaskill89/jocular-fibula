@@ -1,13 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerManager : MonoBehaviour {
+
+    public Text gameOverText;
 
 
 	// Use this for initialization
 	void Start ()
     {
+        
 	}
 
 	
@@ -15,7 +19,11 @@ public class PlayerManager : MonoBehaviour {
 	void Update ()
     {
         Stats stats = GetComponent<Stats>();
-	}
+        if (stats.currentHealth <= 0)
+        {
+            StartCoroutine(Die());
+        }
+    }
 
 
     void OnTriggerEnter2D(Collider2D other)
@@ -36,4 +44,14 @@ public class PlayerManager : MonoBehaviour {
         stats.currentHealth += healAmt;
     }
 
+
+    IEnumerator Die()
+    {
+        Time.timeScale = 0;
+        gameOverText.enabled = true;
+        yield return new WaitForSecondsRealtime(2f);
+        SceneManager.LoadScene("Shooter");
+        Time.timeScale = 1;
+        yield return null;
+    }
 }

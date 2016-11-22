@@ -9,10 +9,10 @@ public class BulletControl : MonoBehaviour {
 
 		// Calls the BulletStats script
 		
-		BulletStats Stats = GetComponent<BulletStats>();
+		BulletStats bulletStats = GetComponent<BulletStats>();
 
 
-		transform.Translate( new Vector3(0, Stats.maxSpeed * Time.deltaTime, 0));
+		transform.Translate( new Vector3(0, bulletStats.maxSpeed * Time.deltaTime, 0));
 
 
 		// This part of the code handles screen boundaries
@@ -27,9 +27,14 @@ public class BulletControl : MonoBehaviour {
 		//	Destroy(this.gameObject);
 		//}
 	}
-	void OnCollisionEnter2D (Collision2D bul) {
-		if (bul.collider.gameObject.tag == "Enemy") {
-			Destroy (this.gameObject);
-		}
+	void OnTriggerEnter2D (Collider2D enemy)
+    {        
+		if (enemy.gameObject.tag == "Enemy")
+        {
+            BulletStats bulletStats = GetComponent<BulletStats>();
+            EnemyController enemyController = enemy.GetComponent<EnemyController>();
+            enemyController.DealDamage(bulletStats.bulletDamage);
+            Destroy(this.gameObject);
+        }
 	}
 }

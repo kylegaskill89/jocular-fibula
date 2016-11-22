@@ -6,8 +6,8 @@ public class Stats : MonoBehaviour {
 	public bool isBoss;
 	
 	// Health
-	public float maxHealth = 10f;
-	public float currentHealth = 10f;
+	public float maxHealth = 100f;
+	public float currentHealth = 100f;
 	
 	// Speed
 	public float maxSpeed = 25f;

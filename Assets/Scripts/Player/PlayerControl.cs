@@ -29,12 +29,7 @@ public class PlayerControl : MonoBehaviour {
         Input.GetAxis ("Horizontal");
 		
 		transform.Translate( new Vector3(Input.GetAxis ("Horizontal") * stats.maxSpeed * Time.deltaTime, 0, 0));
-
-        Input.GetAxis("Vertical");
-
-        transform.Translate(new Vector3(0, Input.GetAxis("Vertical") * (stats.maxSpeed / 2) * Time.deltaTime, 0));
-
-
+      
         // This part of the code handles screen boundaries
 
         Vector3 pos = transform.position;
@@ -54,11 +49,10 @@ public class PlayerControl : MonoBehaviour {
 		if (pos.x - shipBoundary < -orthoSize) {
 			pos.x = -orthoSize + shipBoundary;
 		}
-		
-		
-		// If the ship is leaving the camera, then this puts it back at the edge
-		
-		transform.position = pos;
+
+        // If the ship is leaving the camera, then this puts it back at the edge
+
+        transform.position = pos;
 				
 
 	}

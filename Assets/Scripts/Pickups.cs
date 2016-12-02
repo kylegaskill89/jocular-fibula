@@ -1,28 +1,30 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class BulletPickups : MonoBehaviour {
+public class Pickups : MonoBehaviour 
+{
 
-    public string pickupType;
+    public float healFactor;
 
 	// Use this for initialization
-	void Start ()
-    {
+	void Start () 
+	{
 	
 	}
 	
 	// Update is called once per frame
-	void Update ()
-    {
+	void Update () 
+	{
         transform.Translate(new Vector3(0, (-1f * Time.deltaTime), 0));
     }
+
 
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
-        {            
-            ShotManager shotManager = other.GetComponent<ShotManager>();
-            shotManager.bulletType = pickupType;
+        {
+            PlayerManager playerManager = other.GetComponent<PlayerManager>();
+            playerManager.Heal(healFactor);
             Destroy(gameObject);
         }
     }

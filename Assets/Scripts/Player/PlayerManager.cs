@@ -23,6 +23,11 @@ public class PlayerManager : MonoBehaviour {
         {
             StartCoroutine(Die());
         }
+
+        if (stats.currentHealth >= stats.maxHealth)
+        {
+            stats.currentHealth = stats.maxHealth;
+        }
     }
 
 

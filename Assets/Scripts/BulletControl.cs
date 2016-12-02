@@ -34,7 +34,7 @@ public class BulletControl : MonoBehaviour {
             BulletStats bulletStats = GetComponent<BulletStats>();
             EnemyController enemyController = enemy.GetComponent<EnemyController>();
             enemyController.DealDamage(bulletStats.bulletDamage);
-            Destroy(this.gameObject);
+            Destroy(gameObject);
         }
 	}
 }

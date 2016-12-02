@@ -29,11 +29,15 @@ public class PlayerControl : MonoBehaviour {
         Input.GetAxis ("Horizontal");
 		
 		transform.Translate( new Vector3(Input.GetAxis ("Horizontal") * stats.maxSpeed * Time.deltaTime, 0, 0));
-		
-		
-		// This part of the code handles screen boundaries
-		
-		Vector3 pos = transform.position;
+
+        Input.GetAxis("Vertical");
+
+        transform.Translate(new Vector3(0, Input.GetAxis("Vertical") * (stats.maxSpeed / 2) * Time.deltaTime, 0));
+
+
+        // This part of the code handles screen boundaries
+
+        Vector3 pos = transform.position;
 		
 		
 		// Get the size of the camera so that the boundary can be set

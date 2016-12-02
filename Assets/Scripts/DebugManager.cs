@@ -8,8 +8,9 @@ public class DebugManager : MonoBehaviour
     public bool debugMode = false;
 
     public Text DebugModeText;
-
+    
     public GameObject stdEnemy;
+    public GameObject player;
 
     // Use this for initialization
     void Start () 
@@ -20,6 +21,10 @@ public class DebugManager : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
+
+        PlayerManager playerManager = player.GetComponent<PlayerManager>();
+
+
         if (debugMode)
         {
             DebugModeText.text = "Debug Mode: On";
@@ -38,6 +43,11 @@ public class DebugManager : MonoBehaviour
         {
             Instantiate(stdEnemy, new Vector3(0, 2.5f, 0), transform.rotation);
         }
-	}
+
+        if (debugMode && (Input.GetKeyDown(KeyCode.Alpha2)))
+        {
+            playerManager.godMode = !playerManager.godMode;
+        }
+    }
 
 }

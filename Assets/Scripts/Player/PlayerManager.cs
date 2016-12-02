@@ -6,6 +6,9 @@ using UnityEngine.SceneManagement;
 public class PlayerManager : MonoBehaviour {
 
     public Text gameOverText;
+    public Text VelocityText;
+
+    public bool godMode = false;
 
 
 	// Use this for initialization
@@ -18,6 +21,7 @@ public class PlayerManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
+
         Stats stats = GetComponent<Stats>();
         if (stats.currentHealth <= 0)
         {
@@ -28,6 +32,7 @@ public class PlayerManager : MonoBehaviour {
         {
             stats.currentHealth = stats.maxHealth;
         }
+
     }
 
 
@@ -36,7 +41,10 @@ public class PlayerManager : MonoBehaviour {
         if (other.CompareTag("Enemy"))
         {
             Stats stats = GetComponent<Stats>();
-            stats.currentHealth -= 25f;            
+            if (!godMode)
+            {
+                stats.currentHealth -= 25f;
+            }        
             EnemyController enemyController = other.GetComponent<EnemyController>();
             enemyController.DealDamage(100f);            
         }

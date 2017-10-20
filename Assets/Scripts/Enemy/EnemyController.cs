@@ -3,6 +3,8 @@ using System.Collections;
 
 public class EnemyController : MonoBehaviour {
 
+    public GameObject Player;
+
 	// Use this for initialization
 	void Start ()
     {
@@ -21,13 +23,16 @@ public class EnemyController : MonoBehaviour {
 
 		// Debug controls
 
-		if (Input.GetKeyDown(KeyCode.Delete)) {
+		if (Input.GetKeyDown(KeyCode.Delete))
+        {
 			stats.currentHealth = -1;
 			Debug.Log ("Enemy Destroyed!");
 		}
 
-		if (stats.currentHealth <= 0) {
-			Destroy (this.gameObject);
+		if (stats.currentHealth <= 0)
+        {
+            EnemyDeath();
+            
 		}
 
 
@@ -39,6 +44,15 @@ public class EnemyController : MonoBehaviour {
         Stats stats = GetComponent<Stats>();
         stats.currentHealth -= dmgAmt;
     }
+
+    public void EnemyDeath()
+    {
+        Stats enemyStats = GetComponent<Stats>();
+        Stats playerStats = GameObject.Find("PlayerShip").GetComponent<Stats>();
+        playerStats.currentSpecialCharge += enemyStats.chargeEffect;
+        Destroy(this.gameObject);        
+    }
+
 }
 
 

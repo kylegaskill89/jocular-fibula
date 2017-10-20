@@ -23,6 +23,7 @@ public class PlayerManager : MonoBehaviour {
     {
 
         Stats stats = GetComponent<Stats>();
+
         if (stats.currentHealth <= 0)
         {
             StartCoroutine(Die());
@@ -31,6 +32,11 @@ public class PlayerManager : MonoBehaviour {
         if (stats.currentHealth >= stats.maxHealth)
         {
             stats.currentHealth = stats.maxHealth;
+        }
+
+        if (stats.currentSpecialCharge >= stats.specialChargeNeeded)
+        {
+            stats.currentSpecialCharge = stats.specialChargeNeeded;
         }
 
     }
@@ -44,9 +50,10 @@ public class PlayerManager : MonoBehaviour {
             if (!godMode)
             {
                 stats.currentHealth -= 25f;
-            }        
-            EnemyController enemyController = other.GetComponent<EnemyController>();
-            enemyController.DealDamage(100f);            
+            }
+            Destroy(other.gameObject);     
+           // EnemyController enemyController = other.GetComponent<EnemyController>();
+           // enemyController.DealDamage(100f);            
         }
     }
 

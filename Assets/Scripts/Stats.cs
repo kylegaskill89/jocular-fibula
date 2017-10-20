@@ -18,5 +18,12 @@ public class Stats : MonoBehaviour {
 	
 	// Attack Speed
 	public float attackSpeed = 0.1f;
+
+    // Special Attack
+    public float specialChargeNeeded = 100f;
+    public float currentSpecialCharge = 0f;
+
+    // Charge Effect
+    public float chargeEffect;
 	
 }

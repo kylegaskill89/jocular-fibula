@@ -31,8 +31,7 @@ public class EnemyController : MonoBehaviour {
 
 		if (stats.currentHealth <= 0)
         {
-            EnemyDeath();
-            
+            EnemyDeath();            
 		}
 
 

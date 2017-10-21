@@ -5,9 +5,12 @@ public class ShotManager : MonoBehaviour
 {
 
     public string bulletType = "StandardBullet";
+    public string specialAtk = "StandardSpecial";
 
     public GameObject StdBul;
     public GameObject LasBul;
+
+    public GameObject StdSpecial;
 
     public float cooldownTime = 10f;
     public float cooldownTimeTwo = 10f;
@@ -17,10 +20,10 @@ public class ShotManager : MonoBehaviour
 
 
     // Update is called once per frame
-    void Update ()
+    void Update()
     {
 
-        // Timer increases between attacks
+        // Normal shot logic
 
         cooldownTime += Time.deltaTime;
         cooldownTimeTwo += Time.deltaTime;
@@ -33,6 +36,13 @@ public class ShotManager : MonoBehaviour
         if (bulletType == "Laser")
         {
             LaserShot();
+        }
+
+        // Special shot logic
+
+        if (specialAtk == "StandardSpecial")
+        {
+            StandardSpecial();
         }
 
     }
@@ -58,7 +68,7 @@ public class ShotManager : MonoBehaviour
 
         if (cooldownTimeTwo >= stats.attackSpeed && Input.GetAxis("Fire2") != 0)
         {
-            GameObject cloneRight =  Instantiate(StdBul, BulletTwoSpawn.transform.position, transform.rotation);
+            GameObject cloneRight = Instantiate(StdBul, BulletTwoSpawn.transform.position, transform.rotation);
             cloneRight.transform.parent = bulletHolder;
             cooldownTimeTwo = 0;
         }
@@ -70,10 +80,26 @@ public class ShotManager : MonoBehaviour
         GameObject BulletFrontSpawn = GameObject.Find("BulletFrontSpawn");
 
         if (Input.GetAxis("Fire1") != 0)
-        {                     
+        {
             GameObject cloneLasBul = Instantiate(LasBul, BulletFrontSpawn.transform.position, transform.rotation);
-            cloneLasBul.transform.parent = playerShipFront;                    
+            cloneLasBul.transform.parent = playerShipFront;
         }
-    } 
+    }
+
+    void StandardSpecial()
+    {
+        Stats stats = GetComponent<Stats>();
+
+        if (stats.currentSpecialCharge >= stats.specialChargeNeeded && Input.GetKeyDown(KeyCode.Space))
+        {
+            Debug.Log("Bankai");
+            stats.currentSpecialCharge = 0;
+        }
+        else if(stats.currentSpecialCharge < stats.specialChargeNeeded && Input.GetKeyDown(KeyCode.Space))
+        {
+            Debug.Log("Your special meter is not charged");
+        }
+
+    }
 
 }

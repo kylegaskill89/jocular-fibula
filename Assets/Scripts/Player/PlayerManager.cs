@@ -51,9 +51,7 @@ public class PlayerManager : MonoBehaviour {
             {
                 stats.currentHealth -= 25f;
             }
-            Destroy(other.gameObject);     
-           // EnemyController enemyController = other.GetComponent<EnemyController>();
-           // enemyController.DealDamage(100f);            
+            Destroy(other.gameObject);              
         }
     }
 

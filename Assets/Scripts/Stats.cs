@@ -25,5 +25,18 @@ public class Stats : MonoBehaviour {
 
     // Charge Effect
     public float chargeEffect;
-	
+
+
+  /*
+    
+    public void DrainSpecial()
+    {
+        while (currentSpecialCharge > 0)
+        {
+            currentSpecialCharge -= Time.deltaTime;
+        }
+    }
+
+	*/
+
 }

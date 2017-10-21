@@ -3,17 +3,24 @@ using System.Collections;
 
 public class ShotManager : MonoBehaviour
 {
+    public bool canFireReg = true;
 
     public string bulletType = "StandardBullet";
+    public string powerupType;
     public string specialAtk = "StandardSpecial";
+    
 
     public GameObject StdBul;
     public GameObject LasBul;
 
+    public GameObject SprdSht;
+    public bool powerup = false;
+    float powerupTimer;
+
     public GameObject StdSpecial;
 
-    public float cooldownTime = 10f;
-    public float cooldownTimeTwo = 10f;
+    float cooldownTime = 10f;
+    float cooldownTimeTwo = 10f;
 
     public Transform playerShipFront;
     public Transform bulletHolder;
@@ -38,6 +45,14 @@ public class ShotManager : MonoBehaviour
             LaserShot();
         }
 
+        // Pickup shot logic
+
+        if (powerupType == "SpreadShot" && powerup)
+        {
+            canFireReg = false;
+            SpreadShot();
+        }
+
         // Special shot logic
 
         if (specialAtk == "StandardSpecial")
@@ -59,14 +74,14 @@ public class ShotManager : MonoBehaviour
 
         // If the time since the last shot is higher than the attack speed and the player is pressing the button to shoot, then the timer is reset and the shot is fired
 
-        if (cooldownTime >= stats.attackSpeed && Input.GetAxis("Fire1") != 0)
+        if (canFireReg && cooldownTime >= stats.attackSpeed && Input.GetAxis("Fire1") != 0)
         {
             GameObject cloneLeft = Instantiate(StdBul, BulletOneSpawn.transform.position, transform.rotation);
             cloneLeft.transform.parent = bulletHolder;
             cooldownTime = 0;
         }
 
-        if (cooldownTimeTwo >= stats.attackSpeed && Input.GetAxis("Fire2") != 0)
+        if (canFireReg && cooldownTimeTwo >= stats.attackSpeed && Input.GetAxis("Fire2") != 0)
         {
             GameObject cloneRight = Instantiate(StdBul, BulletTwoSpawn.transform.position, transform.rotation);
             cloneRight.transform.parent = bulletHolder;
@@ -79,10 +94,31 @@ public class ShotManager : MonoBehaviour
     {
         GameObject BulletFrontSpawn = GameObject.Find("BulletFrontSpawn");
 
-        if (Input.GetAxis("Fire1") != 0)
+        if (canFireReg && Input.GetAxis("Fire1") != 0)
         {
             GameObject cloneLasBul = Instantiate(LasBul, BulletFrontSpawn.transform.position, transform.rotation);
             cloneLasBul.transform.parent = playerShipFront;
+        }
+    }
+
+    void SpreadShot()
+    {
+        Stats stats = GetComponent<Stats>();
+        powerupTimer += Time.deltaTime;
+
+        if (cooldownTime >= stats.attackSpeed && powerupTimer <= stats.powerupTime && Input.GetAxis("Fire1") != 0)
+        {
+            GameObject cloneFront = Instantiate(StdBul, playerShipFront.transform.position, transform.rotation);
+            cloneFront.transform.parent = bulletHolder;
+            cooldownTimeTwo = 0;
+            Debug.Log(powerupTimer);
+        }
+
+        if (powerupTimer > stats.powerupTime)
+        {
+            powerup = false;
+            canFireReg = true;
+            powerupTimer = 0;
         }
     }
 

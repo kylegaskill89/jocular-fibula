@@ -26,6 +26,9 @@ public class Stats : MonoBehaviour {
     // Charge Effect
     public float chargeEffect;
 
+    // Powerup Time
+    public float powerupTime = 5f;
+
 
   /*
     

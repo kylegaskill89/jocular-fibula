@@ -48,6 +48,12 @@ public class DebugManager : MonoBehaviour
         {
             playerManager.godMode = !playerManager.godMode;
         }
+
+        if (debugMode && (Input.GetKeyDown(KeyCode.Alpha3)))
+        {
+            ShotManager playerShotManager = GameObject.Find("PlayerShip").GetComponent<ShotManager>();
+            playerShotManager.powerup = true;
+        }
     }
 
 }

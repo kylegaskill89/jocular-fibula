@@ -89,7 +89,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 124926}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.33, z: 0}
+  m_LocalPosition: {x: 0, y: 0.4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 476022}
@@ -174,6 +174,7 @@ MonoBehaviour:
   specialChargeNeeded: 100
   currentSpecialCharge: 0
   chargeEffect: 0
+  powerupTime: 5
 --- !u!212 &21274270
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -328,14 +329,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 841901cdafebdae429d31e7d6d6392b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletType: Laser
+  canFireReg: 1
+  bulletType: StandardBullet
+  powerupType: SpreadShot
+  specialAtk: StandardSpecial
   StdBul: {fileID: 1000012407753144, guid: e7eab2c70282f4d478a9b60ca0847171, type: 2}
   LasBul: {fileID: 1000010694388430, guid: 66ecbf055c031e4479d48554f0508961, type: 2}
-  cooldownTime: 10
-  cooldownTimeTwo: 10
+  SprdSht: {fileID: 0}
+  powerup: 0
+  StdSpecial: {fileID: 0}
   playerShipFront: {fileID: 441796}
-  playerShipLeft: {fileID: 400464}
-  playerShipRight: {fileID: 4000013297967662}
+  bulletHolder: {fileID: 0}
 --- !u!114 &114000011296049458
 MonoBehaviour:
   m_ObjectHideFlags: 1

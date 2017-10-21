@@ -745,21 +745,16 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 114000011296049458, guid: 0557339085e9a8b4db7722d1b5d18978,
-        type: 2}
-      propertyPath: gameOverText
-      value: 
-      objectReference: {fileID: 29522173}
-    - target: {fileID: 114000011066865922, guid: 0557339085e9a8b4db7722d1b5d18978,
-        type: 2}
-      propertyPath: playerShipLeft
-      value: 
-      objectReference: {fileID: 226021847}
     - target: {fileID: 114000011066865922, guid: 0557339085e9a8b4db7722d1b5d18978,
         type: 2}
       propertyPath: bulletHolder
       value: 
       objectReference: {fileID: 226021847}
+    - target: {fileID: 114000011296049458, guid: 0557339085e9a8b4db7722d1b5d18978,
+        type: 2}
+      propertyPath: gameOverText
+      value: 
+      objectReference: {fileID: 29522173}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0557339085e9a8b4db7722d1b5d18978, type: 2}
   m_IsPrefabParent: 0
@@ -1053,7 +1048,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8b2fe823ccaff74fadcfbad118b7ff6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debugMode: 0
+  debugMode: 1
   DebugModeText: {fileID: 818638542}
   stdEnemy: {fileID: 1000011755481942, guid: 227307c01cbc29249af3f935848da78e, type: 2}
   player: {fileID: 1420410107}

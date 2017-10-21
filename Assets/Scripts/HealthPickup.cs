@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class HealthPickup : MonoBehaviour 
+public class Pickups : MonoBehaviour 
 {
 
     public float healFactor;
